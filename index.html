@@ -126,16 +126,14 @@
             width: 100%;
             max-width: 400px;
             height: 300px;
-            background: linear-gradient(145deg, #f0f0f0, #d0d0d0);
+            background-image: url('device02.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
             border-radius: 20px;
             margin: 0 auto;
             position: relative;
             box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.2rem;
             animation: float 3s ease-in-out infinite;
         }
 
@@ -164,28 +162,51 @@
 
         .feature-card {
             background: white;
-            padding: 2.5rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
             transition: transform 0.3s ease;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
         }
 
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #00d4aa, #00b894);
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+        }
+
+        .feature-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
             color: white;
-            font-size: 2rem;
+        }
+
+        .feature-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-content p {
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
         .screenshots-container {
@@ -299,6 +320,15 @@
             background: #00d4aa;
         }
 
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -331,32 +361,45 @@
         .step {
             text-align: center;
             position: relative;
-            padding: 2rem;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(45deg, #00d4aa, #00b894);
-            color: white;
-            border-radius: 50%;
+            height: 350px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
+            flex-direction: column;
+            justify-content: flex-end;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
         }
 
-        .step-icon {
-            font-size: 3rem;
-            margin: 1rem 0;
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+        }
+
+        .step-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            color: white;
+        }
+
+        .step-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .step-content p {
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
         .testimonials {
@@ -570,10 +613,7 @@
                     <a href="#preorder" class="cta-button">Pre-Order Now</a>
                 </div>
                 <div class="hero-visual">
-                    <div class="device-mockup">
-                        DiagnoX Device<br>
-                        <small>Actual device photo</small>
-                    </div>
+                    <div class="device-mockup"></div>
                 </div>
             </div>
         </div>
@@ -583,35 +623,41 @@
         <div class="container">
             <h2 class="section-title">Why Choose DiagnoX?</h2>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Non-Invasive Technology</h3>
-                    <p>Advanced light sensor technology reads glucose levels through skin density without any needles or blood samples.</p>
+                <div class="feature-card" style="background-image: url('01_Non-Invasive Technology.png');">
+                    <div class="feature-content">
+                        <h3>Non-Invasive Technology</h3>
+                        <p>Advanced light sensor technology reads glucose levels through skin density without any needles or blood samples.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Instant Results</h3>
-                    <p>Get accurate glucose readings in seconds with our cutting-edge optical sensors and AI-powered analysis.</p>
+                <div class="feature-card" style="background-image: url('02_Instant Results.png');">
+                    <div class="feature-content">
+                        <h3>Instant Results</h3>
+                        <p>Get accurate glucose readings in seconds with our cutting-edge optical sensors and AI-powered analysis.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Smart App Integration</h3>
-                    <p>Seamlessly sync with the DiagnoX app for comprehensive tracking, trends analysis, and personalized insights.</p>
+                <div class="feature-card" style="background-image: url('03_Smart App Integration.png');">
+                    <div class="feature-content">
+                        <h3>Smart App Integration</h3>
+                        <p>Seamlessly sync with the DiagnoX app for comprehensive tracking, trends analysis, and personalized insights.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Medical Grade Accuracy</h3>
-                    <p>Clinically validated precision that meets medical standards for reliable diabetes management.</p>
+                <div class="feature-card" style="background-image: url('04_Medical Grade Accuracy.png');">
+                    <div class="feature-content">
+                        <h3>Medical Grade Accuracy</h3>
+                        <p>Clinically validated precision that meets medical standards for reliable diabetes management.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔋</div>
-                    <h3>Long Battery Life</h3>
-                    <p>Up to 12 hours of continuous monitoring on a single charge with fast wireless charging capability.</p>
+                <div class="feature-card" style="background-image: url('05_Long Battery Life.png');">
+                    <div class="feature-content">
+                        <h3>Long Battery Life</h3>
+                        <p>Up to 12 hours of continuous monitoring on a single charge with fast wireless charging capability.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💙</div>
-                    <h3>Pain-Free Monitoring</h3>
-                    <p>Say goodbye to daily finger pricks and hello to comfortable, stress-free glucose monitoring.</p>
+                <div class="feature-card" style="background-image: url('06_Pain-Free Monitoring.png');">
+                    <div class="feature-content">
+                        <h3>Pain-Free Monitoring</h3>
+                        <p>Say goodbye to daily finger pricks and hello to comfortable, stress-free glucose monitoring.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -680,23 +726,26 @@
         <div class="container">
             <h2 class="section-title">How DiagnoX Works</h2>
             <div class="process-steps">
-                <div class="step">
+                <div class="step" style="background-image: url('07_Advanced Light Sensors.png');">
                     <div class="step-number">1</div>
-                    <div class="step-icon">🔬</div>
-                    <h3>Advanced Light Sensors</h3>
-                    <p>Our proprietary optical sensors emit safe light wavelengths that penetrate the skin to analyze blood vessel density and glucose concentration.</p>
+                    <div class="step-content">
+                        <h3>Advanced Light Sensors</h3>
+                        <p>Our proprietary optical sensors emit safe light wavelengths that penetrate the skin to analyze blood vessel density and glucose concentration.</p>
+                    </div>
                 </div>
-                <div class="step">
+                <div class="step" style="background-image: url('08_AI Processing.png');">
                     <div class="step-number">2</div>
-                    <div class="step-icon">🧠</div>
-                    <h3>AI Processing</h3>
-                    <p>Machine learning algorithms instantly process optical data to calculate precise glucose levels with medical-grade accuracy.</p>
+                    <div class="step-content">
+                        <h3>AI Processing</h3>
+                        <p>Machine learning algorithms instantly process optical data to calculate precise glucose levels with medical-grade accuracy.</p>
+                    </div>
                 </div>
-                <div class="step">
+                <div class="step" style="background-image: url('09_Real-time Results.png');">
                     <div class="step-number">3</div>
-                    <div class="step-icon">📊</div>
-                    <h3>Real-time Results</h3>
-                    <p>Get instant glucose readings on your device and smartphone app with personalized insights and trend analysis.</p>
+                    <div class="step-content">
+                        <h3>Real-time Results</h3>
+                        <p>Get instant glucose readings on your device and smartphone app with personalized insights and trend analysis.</p>
+                    </div>
                 </div>
             </div>
         </div>
