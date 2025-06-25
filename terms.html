@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - DiagnoX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d4aa;
+        }
+
+        .back-home {
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding-top: 120px;
+            padding-bottom: 4rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            text-align: center;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .last-updated strong {
+            color: #00d4aa;
+        }
+
+        .terms-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section.expanded .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .section-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section.expanded .section-content {
+            padding: 2rem;
+            max-height: 2000px;
+        }
+
+        .section-content h3 {
+            color: #00d4aa;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .section-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .section-content ul {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .section-content li {
+            color: #666;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box h4 {
+            color: #1976d2;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            color: #1976d2;
+            margin-bottom: 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+
+        .warning-box p {
+            color: #856404;
+            margin-bottom: 0;
+        }
+
+        .important-box {
+            background: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .important-box h4 {
+            color: #c62828;
+            margin-bottom: 1rem;
+        }
+
+        .important-box p {
+            color: #c62828;
+            margin-bottom: 0;
+        }
+
+        .quick-links {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .quick-links h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-link {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .quick-link:hover {
+            background: #00d4aa;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-method {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-method h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .summary-card h2 {
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+        }
+
+        .summary-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .summary-point {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .summary-point h4 {
+            margin-bottom: 1rem;
+            color: #00d4aa;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00d4aa;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">DiagnoX</a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#app">App</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" class="back-home">← Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Terms of Service</h1>
+                <p>These terms govern your use of DiagnoX products and services. By using our glucose monitoring system, you agree to these terms and our commitment to providing safe, effective healthcare technology.</p>
+            </div>
+
+            <div class="last-updated">
+                <strong>Last Updated:</strong> January 15, 2025<br>
+                <strong>Effective Date:</strong> January 15, 2025
+            </div>
+
+            <div class="summary-card">
+                <h2>Terms Summary</h2>
+                <p>Here are the key points of our Terms of Service:</p>
+                <div class="summary-points">
+                    <div class="summary-point">
+                        <h4>🏥 Medical Device</h4>
+                        <p>DiagnoX is a medical device for glucose monitoring, not a diagnostic tool</p>
+                    </div>
+                    <div class="summary-point">
+                        <h4>👨‍⚕️ Professional Care</h4>
+                        <p>Always consult healthcare providers for medical decisions</p>
+                    </div>
+                    <div class="summary-point">
+                        <h4>🔒 Data Protection</h4>
+                        <p>Your health data is protected and belongs to you</p>
+                    </div>
+                    <div class="summary-point">
+                        <h4>🛡️ Warranties</h4>
+                        <p>2-year warranty with comprehensive support coverage</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <h3>Quick Navigation</h3>
+                <div class="links-grid">
+                    <a href="#" class="quick-link" data-section="acceptance">Agreement & Acceptance</a>
+                    <a href="#" class="quick-link" data-section="services">Services Description</a>
+                    <a href="#" class="quick-link" data-section="medical">Medical Disclaimers</a>
+                    <a href="#" class="quick-link" data-section="usage">Proper Usage</a>
+                    <a href="#" class="quick-link" data-section="privacy">Privacy & Data</a>
+                    <a href="#" class="quick-link" data-section="liability">Liability & Warranties</a>
+                </div>
+            </div>
+
+            <div class="terms-content">
+                <div class="section" id="acceptance">
+                    <div class="section-header">
+                        <h2>1. Agreement and Acceptance</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>By purchasing, downloading, installing, or using DiagnoX products and services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service ("Terms") and our Privacy Policy.</p>
+
+                        <h3>Who May Use DiagnoX</h3>
+                        <ul>
+                            <li><strong>Adults (18+):</strong> May use DiagnoX independently with full account control</li>
+                            <li><strong>Minors (13-17):</strong> May use with parental consent and supervision</li>
+                            <li><strong>Children (Under 13):</strong> Require parental account setup and management</li>
+                            <li><strong>Healthcare Providers:</strong> May access patient data with explicit patient consent</li>
+                        </ul>
+
+                        <h3>Agreement Scope</h3>
+                        <p>These Terms apply to:</p>
+                        <ul>
+                            <li>DiagnoX glucose monitoring device</li>
+                            <li>DiagnoX mobile applications (iOS and Android)</li>
+                            <li>DiagnoX web portal and online services</li>
+                            <li>Customer support and warranty services</li>
+                            <li>All related software, firmware, and updates</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <h4>📋 Important Notice</h4>
+                            <p>If you do not agree to these Terms, do not use DiagnoX products or services. Continued use after changes indicates acceptance of modified Terms.</p>
+                        </div>
+
+                        <h3>Changes to Terms</h3>
+                        <p>We may update these Terms periodically. Material changes will be communicated via:</p>
+                        <ul>
+                            <li>Email notification to registered users</li>
+                            <li>In-app notifications</li>
+                            <li>Website announcements</li>
+                            <li>30-day advance notice for significant changes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section" id="services">
+                    <div class="section-header">
+                        <h2>2. Services and Product Description</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>DiagnoX provides non-invasive glucose monitoring technology designed to help individuals with diabetes manage their condition more effectively.</p>
+
+                        <h3>Core Services</h3>
+                        <ul>
+                            <li><strong>Glucose Monitoring:</strong> Non-invasive blood glucose measurement using optical sensor technology</li>
+                            <li><strong>Data Analytics:</strong> Trend analysis, pattern recognition, and personalized insights</li>
+                            <li><strong>Mobile Application:</strong> Comprehensive diabetes management platform</li>
+                            <li><strong>Cloud Services:</strong> Secure data storage, synchronization, and backup</li>
+                            <li><strong>Reporting:</strong> Health reports for personal use and healthcare provider sharing</li>
+                            <li><strong>Support Services:</strong> Customer support, warranty, and technical assistance</li>
+                        </ul>
+
+                        <h3>Service Availability</h3>
+                        <ul>
+                            <li>Services are available 24/7, subject to maintenance windows</li>
+                            <li>Planned maintenance will be announced in advance</li>
+                            <li>Emergency maintenance may occur without notice</li>
+                            <li>Service availability may vary by geographic location</li>
+                        </ul>
+
+                        <h3>Software Updates</h3>
+                        <ul>
+                            <li>Automatic updates ensure optimal performance and security</li>
+                            <li>Critical updates may be required for continued service access</li>
+                            <li>Users will be notified of significant feature changes</li>
+                            <li>Legacy software versions have limited support periods</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <h4>⚠️ Service Limitations</h4>
+                            <p>DiagnoX is designed for personal glucose monitoring and is not intended to replace professional medical care, diagnosis, or treatment decisions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" id="medical">
+                    <div class="section-header">
+                        <h2>3. Medical Disclaimers and Limitations</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>DiagnoX is a medical device intended for glucose monitoring by individuals with diabetes. Important medical disclaimers apply to its use.</p>
+
+                        <div class="important-box">
+                            <h4>🚨 Critical Medical Information</h4>
+                            <p>DiagnoX is not intended to diagnose, treat, cure, or prevent any disease. Always consult with qualified healthcare professionals for medical decisions.</p>
+                        </div>
+
+                        <h3>Intended Use</h3>
+                        <ul>
+                            <li>Personal glucose monitoring for individuals with diagnosed diabetes</li>
+                            <li>Trend analysis and pattern identification</li>
+                            <li>Supporting diabetes self-management</li>
+                            <li>Complementing traditional glucose monitoring methods</li>
+                        </ul>
+
+                        <h3>NOT Intended For</h3>
+                        <ul>
+                            <li>Diagnosing diabetes or pre-diabetes</li>
+                            <li>Making treatment decisions without healthcare provider consultation</li>
+                            <li>Emergency medical situations requiring immediate intervention</li>
+                            <li>Replacing laboratory-grade glucose testing when required</li>
+                            <li>Use by individuals without diagnosed diabetes (unless approved by physician)</li>
+                        </ul>
+
+                        <h3>When to Seek Medical Care</h3>
+                        <p>Contact your healthcare provider immediately if you experience:</p>
+                        <ul>
+                            <li>Consistently high or low glucose readings</li>
+                            <li>Symptoms of hyperglycemia or hypoglycemia</li>
+                            <li>Significant changes in glucose patterns</li>
+                            <li>Any diabetes-related emergency symptoms</li>
+                            <li>Discrepancies between DiagnoX and other glucose meters</li>
+                        </ul>
+
+                        <h3>Accuracy Limitations</h3>
+                        <ul>
+                            <li>DiagnoX achieves 98.5% clinical accuracy under optimal conditions</li>
+                            <li>Factors like skin condition, temperature, and user technique may affect readings</li>
+                            <li>Comparative readings with traditional methods may be recommended</li>
+                            <li>Device calibration and maintenance affect accuracy</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <h4>⚠️ Emergency Situations</h4>
+                            <p>In case of diabetes-related emergency, seek immediate medical attention. Do not rely solely on DiagnoX readings for emergency decisions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" id="usage">
+                    <div class="section-header">
+                        <h2>4. Proper Usage and User Responsibilities</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>To ensure safe and effective use of DiagnoX, users must follow proper usage guidelines and accept certain responsibilities.</p>
+
+                        <h3>User Responsibilities</h3>
+                        <ul>
+                            <li><strong>Proper Operation:</strong> Follow all instructions and safety guidelines</li>
+                            <li><strong>Regular Maintenance:</strong> Keep device clean and properly maintained</li>
+                            <li><strong>Software Updates:</strong> Install recommended updates promptly</li>
+                            <li><strong>Accurate Information:</strong> Provide truthful health information and profile data</li>
+                            <li><strong>Healthcare Coordination:</strong> Share relevant data with healthcare providers</li>
+                            <li><strong>Safety Compliance:</strong> Report adverse events or safety concerns</li>
+                        </ul>
+
+                        <h3>Prohibited Uses</h3>
+                        <ul>
+                            <li>Using the device for anyone other than the registered user</li>
+                            <li>Modifying, reverse engineering, or tampering with hardware or software</li>
+                            <li>Using DiagnoX for commercial glucose testing services</li>
+                            <li>Sharing account credentials or allowing unauthorized access</li>
+                            <li>Using the device in ways not specified in user manuals</li>
+                            <li>Interfering with device security measures or data encryption</li>
+                        </ul>
+
+                        <h3>Device Care and Maintenance</h3>
+                        <ul>
+                            <li>Clean the device according to provided instructions</li>
+                            <li>Store in appropriate environmental conditions</li>
+                            <li>Charge the device regularly to maintain battery health</li>
+                            <li>Protect from physical damage, moisture, and extreme temperatures</li>
+                            <li>Use only approved accessories and charging equipment</li>
+                        </ul>
+
+                        <h3>Data Accuracy and Quality</h3>
+                        <ul>
+                            <li>Follow proper finger placement and measurement procedures</li>
+                            <li>Ensure hands are clean and dry before taking readings</li>
+                            <li>Report consistently unusual readings to support team</li>
+                            <li>Maintain accurate profile information and settings</li>
+                            <li>Log relevant health events and contextual information</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <h4>🎯 Best Practices</h4>
+                            <p>Regular use, proper technique, and keeping your healthcare team informed about your DiagnoX data will help you get the most benefit from our technology.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" id="privacy">
+                    <div class="section-header">
+                        <h2>5. Privacy, Data, and Intellectual Property</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>Your privacy and data rights are governed by our Privacy Policy, which is incorporated into these Terms by reference.</p>
+
+                        <h3>Your Data Rights</h3>
+                        <ul>
+                            <li><strong>Ownership:</strong> You own your personal health data</li>
+                            <li><strong>Access:</strong> Full access to view and export your data</li>
+                            <li><strong>Control:</strong> Manage sharing preferences and data retention</li>
+                            <li><strong>Portability:</strong> Export data in standard formats</li>
+                            <li><strong>Deletion:</strong> Request account and data deletion</li>
+                        </ul>
+
+                        <h3>DiagnoX Intellectual Property</h3>
+                        <ul>
+                            <li>DiagnoX technology, software, and algorithms are proprietary</li>
+                            <li>Trademarks, logos, and branding are protected intellectual property</li>
+                            <li>Patents protect our optical glucose sensing technology</li>
+                            <li>Users receive limited license for personal use only</li>
+                        </ul>
+
+                        <h3>Data Usage by DiagnoX</h3>
+                        <ul>
+                            <li>Providing and improving our services</li>
+                            <li>Developing better algorithms and features</li>
+                            <li>Ensuring device safety and regulatory compliance</li>
+                            <li>Aggregate, anonymized research (with user consent)</li>
+                        </ul>
+
+                        <h3>Data Security</h3>
+                        <ul>
+                            <li>End-to-end encryption for all health data</li>
+                            <li>HIPAA, GDPR, and SOC 2 compliance</li>
+                            <li>Regular security audits and penetration testing</li>
+                            <li>Incident response procedures for any security events</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <h4>🔐 Privacy First</h4>
+                            <p>See our detailed Privacy Policy for comprehensive information about how we collect, use, and protect your personal health information.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" id="liability">
+                    <div class="section-header">
+                        <h2>6. Warranties, Liability, and Limitations</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>DiagnoX provides comprehensive warranties while maintaining appropriate limitations consistent with medical device regulations.</p>
+
+                        <h3>Product Warranties</h3>
+                        <ul>
+                            <li><strong>Hardware Warranty:</strong> 2 years from purchase date</li>
+                            <li><strong>Software Support:</strong> Ongoing updates and bug fixes</li>
+                            <li><strong>Accuracy Guarantee:</strong> Meets published clinical accuracy specifications</li>
+                            <li><strong>Manufacturing Defects:</strong> Full replacement or repair</li>
+                            <li><strong>Battery Performance:</strong> Maintains 80% capacity for 18 months</li>
+                        </ul>
+
+                        <h3>Warranty Exclusions</h3>
+                        <ul>
+                            <li>Physical damage from misuse, accidents, or normal wear</li>
+                            <li>Damage from unauthorized modifications or repairs</li>
+                            <li>Water damage or exposure to extreme environmental conditions</li>
+                            <li>Software issues caused by unauthorized modifications</li>
+                            <li>Loss or theft of device</li>
+                        </ul>
+
+                        <h3>Service Warranties</h3>
+                        <ul>
+                            <li>99.5% uptime for cloud services (excluding scheduled maintenance)</li>
+                            <li>Data backup and recovery services</li>
+                            <li>Customer support response within 24 hours</li>
+                            <li>Mobile app compatibility with supported operating systems</li>
+                        </ul>
+
+                        <h3>Limitation of Liability</h3>
+                        <p><strong>Medical Decisions:</strong> DiagnoX is not liable for medical outcomes based on user decisions. Users are responsible for consulting healthcare providers for medical guidance.</p>
+                        
+                        <p><strong>Maximum Liability:</strong> Our total liability for any claims is limited to the amount paid for DiagnoX products and services in the 12 months preceding the claim.</p>
+
+                        <p><strong>Consequential Damages:</strong> We are not liable for indirect, incidental, or consequential damages, including lost profits or business interruption.</p>
+
+                        <h3>Indemnification</h3>
+                        <ul>
+                            <li>Users agree to indemnify DiagnoX against claims arising from misuse</li>
+                            <li>Protection applies to unauthorized modifications or violations of these Terms</li>
+                            <li>Excludes claims arising from product defects or our negligence</li>
+                        </ul>
+
+                        <div class="important-box">
+                            <h4>🚨 Medical Device Liability</h4>
+                            <p>Some jurisdictions may not allow certain liability limitations for medical devices. In such cases, applicable laws will govern liability terms.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h2>7. Termination and Account Suspension</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>Either party may terminate this agreement under specific circumstances, with appropriate protections for user data.</p>
+
+                        <h3>User-Initiated Termination</h3>
+                        <ul>
+                            <li>Users may delete their account at any time through the app</li>
+                            <li>Device can be deregistered and transferred to another user</li>
+                            <li>Data export is available before account deletion</li>
+                            <li>Warranty coverage continues for the original warranty period</li>
+                        </ul>
+
+                        <h3>DiagnoX-Initiated Termination</h3>
+                        <p>We may suspend or terminate accounts for:</p>
+                        <ul>
+                            <li>Violation of these Terms of Service</li>
+                            <li>Fraudulent activity or unauthorized access attempts</li>
+                            <li>Misuse of the device or services</li>
+                            <li>Non-payment of applicable fees (for premium services)</li>
+                            <li>Legal or regulatory requirements</li>
+                        </ul>
+
+                        <h3>Data Handling Upon Termination</h3>
+                        <ul>
+                            <li>30-day grace period to export data before permanent deletion</li>
+                            <li>Email notification before account termination</li>
+                            <li>Anonymized data may be retained for research purposes (with prior consent)</li>
+                            <li>Legal or regulatory data retention requirements will be honored</li>
+                        </ul>
+
+                        <h3>Effect of Termination</h3>
+                        <ul>
+                            <li>Access to cloud services and data synchronization ends</li>
+                            <li>Device continues to function for local glucose monitoring</li>
+                            <li>Warranty and support services remain valid</li>
+                            <li>Previously shared data with healthcare providers remains accessible to them</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h2>8. Dispute Resolution and Governing Law</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>We encourage resolution of disputes through direct communication, but formal procedures are available when needed.</p>
+
+                        <h3>Informal Resolution</h3>
+                        <ul>
+                            <li>Contact customer support for service-related issues</li>
+                            <li>30-day period for good faith resolution attempts</li>
+                            <li>Escalation to management for complex concerns</li>
+                            <li>Medical advisory board consultation for clinical disputes</li>
+                        </ul>
+
+                        <h3>Formal Dispute Resolution</h3>
+                        <ul>
+                            <li><strong>Mediation:</strong> Required before arbitration for claims over $10,000</li>
+                            <li><strong>Arbitration:</strong> Binding arbitration for claims under $25,000</li>
+                            <li><strong>Court Jurisdiction:</strong> Delaware courts for claims over $25,000</li>
+                            <li><strong>Class Action Waiver:</strong> Individual claims only, no class actions</li>
+                        </ul>
+
+                        <h3>Governing Law</h3>
+                        <ul>
+                            <li>Delaware state law governs these Terms</li>
+                            <li>Federal law applies for medical device regulations</li>
+                            <li>Local consumer protection laws may also apply</li>
+                            <li>International users subject to local data protection laws</li>
+                        </ul>
+
+                        <h3>Exceptions to Arbitration</h3>
+                        <ul>
+                            <li>Small claims court matters (under $5,000)</li>
+                            <li>Intellectual property disputes</li>
+                            <li>Injunctive or equitable relief requests</li>
+                            <li>Regulatory or safety-related matters</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h2>9. General Provisions</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>Additional terms that apply to the interpretation and enforcement of this agreement.</p>
+
+                        <h3>Severability</h3>
+                        <p>If any provision of these Terms is found unenforceable, the remaining provisions will continue in full force and effect.</p>
+
+                        <h3>Assignment</h3>
+                        <ul>
+                            <li>Users may not assign their rights without our written consent</li>
+                            <li>DiagnoX may assign this agreement in connection with business transfers</li>
+                            <li>Device ownership may be transferred between users with proper procedures</li>
+                        </ul>
+
+                        <h3>Force Majeure</h3>
+                        <p>Neither party is liable for delays or failures due to circumstances beyond reasonable control, including natural disasters, governmental actions, or technical failures.</p>
+
+                        <h3>Entire Agreement</h3>
+                        <p>These Terms, together with our Privacy Policy and any additional agreements, constitute the complete agreement between users and DiagnoX.</p>
+
+                        <h3>Language and Translation</h3>
+                        <ul>
+                            <li>English version governs in case of translation discrepancies</li>
+                            <li>Translated versions provided for convenience only</li>
+                            <li>Legal notices will be provided in English</li>
+                        </ul>
+
+                        <h3>Contact Information</h3>
+                        <ul>
+                            <li><strong>General Inquiries:</strong> info@diagnox.com</li>
+                            <li><strong>Legal Notices:</strong> legal@diagnox.com</li>
+                            <li><strong>Support:</strong> support@diagnox.com</li>
+                            <li><strong>Address:</strong> 123 Innovation Drive, Tech City, TC 12345</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2>Questions About These Terms?</h2>
+                <p>Our legal and customer service teams are here to help clarify any aspects of our Terms of Service.</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <h4>📧 Legal Team</h4>
+                        <p>legal@diagnox.com</p>
+                        <small>Contract and legal questions</small>
+                    </div>
+                    <div class="contact-method">
+                        <h4>📞 Customer Support</h4>
+                        <p>+1 (555) 123-4567</p>
+                        <small>General terms questions</small>
+                    </div>
+                    <div class="contact-method">
+                        <h4>👨‍⚕️ Medical Advisory</h4>
+                        <p>medical@diagnox.com</p>
+                        <small>Clinical and medical questions</small>
+                    </div>
+                    <div class="contact-method">
+                        <h4>📮 Postal Address</h4>
+                        <p>DiagnoX Legal Department<br>123 Innovation Drive<br>Tech City, TC 12345</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@diagnox.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Innovation Drive<br>Tech City, TC 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p><a href="faq.html">FAQ & Help Center</a></p>
+                    <p><a href="setup.html">Device Setup Guide</a></p>
+                    <p><a href="tutorials.html">App Tutorials</a></p>
+                    <p><a href="warranty.html">Warranty Information</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <p><a href="about.html">About DiagnoX</a></p>
+                    <p><a href="studies.html">Clinical Studies</a></p>
+                    <p><a href="privacy.html">Privacy Policy</a></p>
+                    <p><a href="terms.html">Terms of Service</a></p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                © 2025 DiagnoX. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Section toggle functionality
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const section = this.parentElement;
+                const isExpanded = section.classList.contains('expanded');
+                
+                // Close all sections
+                document.querySelectorAll('.section').forEach(s => {
+                    s.classList.remove('expanded');
+                });
+                
+                // Open clicked section if it wasn't already open
+                if (!isExpanded) {
+                    section.classList.add('expanded');
+                }
+            });
+        });
+
+        // Quick navigation
+        document.querySelectorAll('.quick-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                
+                if (section) {
+                    // Close all sections first
+                    document.querySelectorAll('.section').forEach(s => {
+                        s.classList.remove('expanded');
+                    });
+                    
+                    // Open target section
+                    section.classList.add('expanded');
+                    
+                    // Scroll to section
+                    section.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Auto-expand first section on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section');
+            if (firstSection) {
+                firstSection.classList.add('expanded');
+            }
+        });
+    </script>
+</body>
+</html>
