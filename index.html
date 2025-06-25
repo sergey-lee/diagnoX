@@ -217,16 +217,44 @@
         }
 
         .screenshot {
-            background: linear-gradient(145deg, #333, #555);
             height: 400px;
             border-radius: 20px;
             position: relative;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
+        }
+
+        .screenshot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 1;
+        }
+
+        .screenshot-caption {
+            position: relative;
+            z-index: 2;
             color: white;
+            text-align: center;
+            padding: 2rem;
+            font-weight: 500;
+        }
+
+        .screenshot-caption small {
+            display: block;
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
         }
 
         .stats-grid {
@@ -670,26 +698,26 @@
                 Your complete diabetes management companion with intelligent insights and personalized recommendations.
             </p>
             <div class="screenshots-container">
-                <div class="screenshot">
-                    <div>
+                <div class="screenshot" style="background-image: url('screenshot-1.png');">
+                    <div class="screenshot-caption">
                         Home Dashboard<br>
                         <small>Real-time glucose levels</small>
                     </div>
                 </div>
-                <div class="screenshot">
-                    <div>
+                <div class="screenshot" style="background-image: url('screenshot-2.png');">
+                    <div class="screenshot-caption">
                         Trends & Analytics<br>
                         <small>Historical data visualization</small>
                     </div>
                 </div>
-                <div class="screenshot">
-                    <div>
+                <div class="screenshot" style="background-image: url('screenshot-3.png');">
+                    <div class="screenshot-caption">
                         Smart Alerts<br>
                         <small>Personalized notifications</small>
                     </div>
                 </div>
-                <div class="screenshot">
-                    <div>
+                <div class="screenshot" style="background-image: url('screenshot-4.png');">
+                    <div class="screenshot-caption">
                         Health Reports<br>
                         <small>Share with your doctor</small>
                     </div>
