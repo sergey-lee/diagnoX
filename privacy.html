@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - DiagnoX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d4aa;
+        }
+
+        .back-home {
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding-top: 120px;
+            padding-bottom: 4rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            text-align: center;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .last-updated strong {
+            color: #00d4aa;
+        }
+
+        .privacy-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section.expanded .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .section-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section.expanded .section-content {
+            padding: 2rem;
+            max-height: 1000px;
+        }
+
+        .section-content h3 {
+            color: #00d4aa;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .section-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .section-content ul {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .section-content li {
+            color: #666;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box h4 {
+            color: #1976d2;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            color: #1976d2;
+            margin-bottom: 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+
+        .warning-box p {
+            color: #856404;
+            margin-bottom: 0;
+        }
+
+        .data-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .data-type {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .data-type-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #00d4aa;
+        }
+
+        .data-type h4 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .data-type p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-method {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-method h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-links {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .quick-links h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-link {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .quick-link:hover {
+            background: #00d4aa;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00d4aa;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">DiagnoX</a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#app">App</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" class="back-home">← Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Privacy Policy</h1>
+                <p>Your privacy and data security are our top priorities. This policy explains how we collect, use, protect, and share your personal health information when you use DiagnoX products and services.</p>
+            </div>
+
+            <div class="last-updated">
+                <strong>Last Updated:</strong> January 15, 2025<br>
+                <strong>Effective Date:</strong> January 15, 2025
+            </div>
+
+            <div class="quick-links">
+                <h3>Quick Navigation</h3>
+                <div class="links-grid">
+                    <a href="#" class="quick-link" data-section="overview">Privacy Overview</a>
+                    <a href="#" class="quick-link" data-section="collection">Data Collection</a>
+                    <a href="#" class="quick-link" data-section="usage">How We Use Data</a>
+                    <a href="#" class="quick-link" data-section="sharing">Data Sharing</a>
+                    <a href="#" class="quick-link" data-section="security">Security Measures</a>
+                    <a href="#" class="quick-link" data-section="rights">Your Rights</a>
+                </div>
+            </div>
+
+            <div class="privacy-content">
+                <div class="section" id="overview">
+                    <div class="section-header">
+                        <h2>1. Privacy Overview & Key Principles</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>At DiagnoX, we are committed to protecting your privacy and maintaining the confidentiality of your personal health information. This Privacy Policy describes our practices concerning the collection, use, and disclosure of information through our DiagnoX glucose monitoring device, mobile application, and related services.</p>
+
+                        <div class="highlight-box">
+                            <h4>🔐 Our Core Privacy Principles</h4>
+                            <p>We believe in transparency, minimal data collection, user control, security by design, and regulatory compliance. Your health data belongs to you, and we are simply the custodians helping you manage it safely.</p>
+                        </div>
+
+                        <h3>Key Points:</h3>
+                        <ul>
+                            <li>We only collect data necessary for device functionality and your health insights</li>
+                            <li>Your glucose readings and health data are encrypted and stored securely</li>
+                            <li>We never sell your personal health information to third parties</li>
+                            <li>You have full control over your data and can export or delete it at any time</li>
+                            <li>We comply with HIPAA, GDPR, and other applicable privacy regulations</li>
+                        </ul>
+
+                        <h3>Scope of This Policy</h3>
+                        <p>This Privacy Policy applies to all DiagnoX products and services, including:</p>
+                        <ul>
+                            <li>DiagnoX glucose monitoring device</li>
+                            <li>DiagnoX mobile application (iOS and Android)</li>
+                            <li>DiagnoX web portal and dashboard</li>
+                            <li>Customer support services</li>
+                            <li>DiagnoX websites and online services</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section" id="collection">
+                    <div class="section-header">
+                        <h2>2. Information We Collect</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>We collect several types of information to provide you with our glucose monitoring services and to continuously improve your experience.</p>
+
+                        <div class="data-types">
+                            <div class="data-type">
+                                <div class="data-type-icon">🩸</div>
+                                <h4>Health Data</h4>
+                                <p>Glucose readings, testing timestamps, trends, and patterns from your DiagnoX device</p>
+                            </div>
+                            <div class="data-type">
+                                <div class="data-type-icon">👤</div>
+                                <h4>Personal Information</h4>
+                                <p>Name, email, date of birth, diabetes type, and emergency contact information</p>
+                            </div>
+                            <div class="data-type">
+                                <div class="data-type-icon">📱</div>
+                                <h4>Device Data</h4>
+                                <p>Device serial number, firmware version, battery status, and technical diagnostics</p>
+                            </div>
+                            <div class="data-type">
+                                <div class="data-type-icon">📊</div>
+                                <h4>Usage Data</h4>
+                                <p>App usage patterns, feature preferences, and interaction analytics</p>
+                            </div>
+                        </div>
+
+                        <h3>Detailed Data Collection</h3>
+                        
+                        <h4>Health and Medical Information:</h4>
+                        <ul>
+                            <li>Blood glucose measurements and timestamps</li>
+                            <li>Glucose trends and patterns</li>
+                            <li>Medication information (if provided)</li>
+                            <li>Meal timing and carbohydrate intake (if logged)</li>
+                            <li>Exercise and activity data (if connected to fitness apps)</li>
+                            <li>Notes and annotations you add to readings</li>
+                            <li>Healthcare provider information (if shared)</li>
+                        </ul>
+
+                        <h4>Account and Profile Information:</h4>
+                        <ul>
+                            <li>Full name and email address</li>
+                            <li>Date of birth and gender</li>
+                            <li>Diabetes type and diagnosis date</li>
+                            <li>Target glucose ranges and preferences</li>
+                            <li>Emergency contact information</li>
+                            <li>Time zone and location (for accurate readings)</li>
+                        </ul>
+
+                        <h4>Technical Information:</h4>
+                        <ul>
+                            <li>Device identifiers and serial numbers</li>
+                            <li>Software and firmware versions</li>
+                            <li>Network connectivity information</li>
+                            <li>Error logs and diagnostic data</li>
+                            <li>Performance metrics and battery status</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <h4>⚠️ Information We Do NOT Collect</h4>
+                            <p>We do not collect your precise location data, social security number, financial information, or any data not directly related to your glucose monitoring and diabetes management.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" id="usage">
+                    <div class="section-header">
+                        <h2>3. How We Use Your Information</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>We use your information solely to provide, improve, and personalize our glucose monitoring services. Here's how:</p>
+
+                        <h3>Primary Service Functions:</h3>
+                        <ul>
+                            <li><strong>Glucose Monitoring:</strong> Processing and displaying your glucose readings in real-time</li>
+                            <li><strong>Trend Analysis:</strong> Identifying patterns and providing insights about your glucose levels</li>
+                            <li><strong>Alerts and Notifications:</strong> Sending timely alerts for high/low glucose levels</li>
+                            <li><strong>Health Reports:</strong> Generating comprehensive reports for you and your healthcare providers</li>
+                            <li><strong>Device Synchronization:</strong> Syncing data between your device and mobile app</li>
+                        </ul>
+
+                        <h3>Product Improvement:</h3>
+                        <ul>
+                            <li>Enhancing device accuracy and performance</li>
+                            <li>Developing new features and capabilities</li>
+                            <li>Improving user interface and experience</li>
+                            <li>Conducting quality assurance and testing</li>
+                            <li>Training machine learning algorithms for better insights</li>
+                        </ul>
+
+                        <h3>Customer Support:</h3>
+                        <ul>
+                            <li>Providing technical assistance and troubleshooting</li>
+                            <li>Processing warranty claims and replacements</li>
+                            <li>Responding to inquiries and feedback</li>
+                            <li>Facilitating healthcare provider communication</li>
+                        </ul>
+
+                        <h3>Legal and Safety Requirements:</h3>
+                        <ul>
+                            <li>Complying with medical device regulations</li>
+                            <li>Reporting adverse events to regulatory authorities</li>
+                            <li>Maintaining records for clinical studies</li>
+                            <li>Protecting against fraud and misuse</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <h4>🎯 Personalization Without Invasion</h4>
+                            <p>We use aggregated and anonymized data to improve our algorithms and services. Your individual health information is never used for marketing purposes or shared with advertisers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section" id="sharing">
+                    <div class="section-header">
+                        <h2>4. Information Sharing and Disclosure</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>We maintain strict controls over your personal health information and only share it in specific, limited circumstances with your consent or as required by law.</p>
+
+                        <h3>With Your Explicit Consent:</h3>
+                        <ul>
+                            <li><strong>Healthcare Providers:</strong> When you choose to share reports with your doctor or diabetes care team</li>
+                            <li><strong>Family Members:</strong> If you designate emergency contacts or caregivers</li>
+                            <li><strong>Third-Party Apps:</strong> When you connect to compatible health platforms (Apple Health, Google Fit)</li>
+                            <li><strong>Research Studies:</strong> If you voluntarily participate in clinical research (always anonymized)</li>
+                        </ul>
+
+                        <h3>Service Providers (Data Processors):</h3>
+                        <p>We work with trusted third-party service providers who help us deliver our services. These providers:</p>
+                        <ul>
+                            <li>Are bound by strict confidentiality agreements</li>
+                            <li>Only access data necessary for their specific function</li>
+                            <li>Meet our security and privacy standards</li>
+                            <li>Include cloud storage providers, data analytics services, and customer support platforms</li>
+                        </ul>
+
+                        <h3>Legal Requirements:</h3>
+                        <ul>
+                            <li>When required by law or court order</li>
+                            <li>To comply with medical device regulations</li>
+                            <li>To report serious adverse events to regulatory authorities</li>
+                            <li>To protect the safety and rights of users or the public</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <h4>🚫 We Never Share Data For:</h4>
+                            <p>Marketing purposes, advertising targeting, selling to data brokers, or any commercial use unrelated to your healthcare and our services.</p>
+                        </div>
+
+                        <h3>Business Transfers:</h3>
+                        <p>In the unlikely event of a merger, acquisition, or sale of assets, your information would be transferred only to entities that agree to protect it under the same standards as this Privacy Policy.</p>
+                    </div>
+                </div>
+
+                <div class="section" id="security">
+                    <div class="section-header">
+                        <h2>5. Data Security and Protection</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>We implement comprehensive security measures to protect your personal health information from unauthorized access, use, disclosure, or destruction.</p>
+
+                        <h3>Technical Safeguards:</h3>
+                        <ul>
+                            <li><strong>Encryption:</strong> All data is encrypted in transit (TLS 1.3) and at rest (AES-256)</li>
+                            <li><strong>Access Controls:</strong> Multi-factor authentication and role-based access restrictions</li>
+                            <li><strong>Network Security:</strong> Firewalls, intrusion detection, and regular security monitoring</li>
+                            <li><strong>Data Backup:</strong> Automated, encrypted backups with geographic redundancy</li>
+                            <li><strong>Secure Development:</strong> Regular security audits and penetration testing</li>
+                        </ul>
+
+                        <h3>Administrative Safeguards:</h3>
+                        <ul>
+                            <li>Comprehensive employee training on privacy and security</li>
+                            <li>Background checks for all personnel with data access</li>
+                            <li>Regular security policy updates and compliance reviews</li>
+                            <li>Incident response procedures and breach notification protocols</li>
+                            <li>Data retention and disposal policies</li>
+                        </ul>
+
+                        <h3>Physical Safeguards:</h3>
+                        <ul>
+                            <li>Secure data centers with biometric access controls</li>
+                            <li>24/7 monitoring and surveillance</li>
+                            <li>Environmental controls and disaster recovery systems</li>
+                            <li>Secure device manufacturing and shipping processes</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <h4>🛡️ Industry-Leading Protection</h4>
+                            <p>Our security measures meet or exceed HIPAA, SOC 2 Type II, and ISO 27001 standards. We undergo regular third-party security audits and maintain cyber liability insurance.</p>
+                        </div>
+
+                        <h3>Your Role in Security:</h3>
+                        <ul>
+                            <li>Use strong, unique passwords for your DiagnoX account</li>
+                            <li>Keep your mobile app updated to the latest version</li>
+                            <li>Report any suspicious activity or security concerns immediately</li>
+                            <li>Log out of shared devices and secure your DiagnoX device</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section" id="rights">
+                    <div class="section-header">
+                        <h2>6. Your Privacy Rights and Choices</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>You have significant control over your personal health information. We provide tools and mechanisms to exercise your privacy rights easily and effectively.</p>
+
+                        <h3>Access and Portability:</h3>
+                        <ul>
+                            <li><strong>View Your Data:</strong> Access all your health information through the DiagnoX app</li>
+                            <li><strong>Export Data:</strong> Download your complete health records in standard formats (PDF, CSV, JSON)</li>
+                            <li><strong>Share with Providers:</strong> Generate comprehensive reports for healthcare consultations</li>
+                            <li><strong>Data History:</strong> View complete audit logs of data access and modifications</li>
+                        </ul>
+
+                        <h3>Correction and Updates:</h3>
+                        <ul>
+                            <li>Update your profile information at any time</li>
+                            <li>Correct inaccurate health data or add context notes</li>
+                            <li>Modify privacy settings and sharing preferences</li>
+                            <li>Request assistance with data corrections from our support team</li>
+                        </ul>
+
+                        <h3>Deletion and Retention:</h3>
+                        <ul>
+                            <li><strong>Delete Individual Records:</strong> Remove specific glucose readings or notes</li>
+                            <li><strong>Account Deletion:</strong> Permanently delete your entire account and all associated data</li>
+                            <li><strong>Retention Periods:</strong> We retain data only as long as necessary for service provision</li>
+                            <li><strong>Backup Deletion:</strong> Data is removed from all backups within 90 days of deletion</li>
+                        </ul>
+
+                        <h3>Communication Preferences:</h3>
+                        <ul>
+                            <li>Customize alert types and notification preferences</li>
+                            <li>Opt out of marketing communications (service messages still apply)</li>
+                            <li>Control emergency contact notifications</li>
+                            <li>Choose preferred communication channels</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <h4>🎛️ Easy Privacy Controls</h4>
+                            <p>Access most privacy controls directly through the DiagnoX app settings. For complex requests or assistance, our privacy team is available 24/7 at privacy@diagnox.com.</p>
+                        </div>
+
+                        <h3>Geographic Rights:</h3>
+                        <p><strong>GDPR (European Union):</strong> Right to access, rectification, erasure, portability, and restriction of processing</p>
+                        <p><strong>CCPA (California):</strong> Right to know, delete, and opt-out of sale (we don't sell personal information)</p>
+                        <p><strong>HIPAA (United States):</strong> Right to access, amend, and accounting of disclosures</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h2>7. Children's Privacy</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>DiagnoX is designed to help people of all ages manage diabetes, including children and teenagers with Type 1 diabetes.</p>
+
+                        <h3>Children Under 13:</h3>
+                        <ul>
+                            <li>Parental consent is required before creating an account</li>
+                            <li>Parents have full access to their child's account and data</li>
+                            <li>Additional security measures protect children's information</li>
+                            <li>We comply with COPPA (Children's Online Privacy Protection Act)</li>
+                        </ul>
+
+                        <h3>Teenagers (13-17):</h3>
+                        <ul>
+                            <li>May create accounts with parental knowledge and consent</li>
+                            <li>Parents can be granted access based on family preferences</li>
+                            <li>Transition to full control at 18 (or legal age in their jurisdiction)</li>
+                            <li>Enhanced privacy education and controls</li>
+                        </ul>
+
+                        <h3>Parental Rights:</h3>
+                        <ul>
+                            <li>Review and approve all data collection for children under 13</li>
+                            <li>Access and export their child's health information</li>
+                            <li>Request deletion of their child's account</li>
+                            <li>Receive notifications about privacy policy changes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h2>8. International Data Transfers</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>DiagnoX operates globally, and we may transfer your personal information across international borders to provide our services.</p>
+
+                        <h3>Transfer Safeguards:</h3>
+                        <ul>
+                            <li>All transfers use appropriate safeguards as required by applicable laws</li>
+                            <li>EU-US data transfers are governed by Standard Contractual Clauses</li>
+                            <li>Data localization preferences are honored where legally required</li>
+                            <li>Encryption protects data during all international transfers</li>
+                        </ul>
+
+                        <h3>Data Storage Locations:</h3>
+                        <ul>
+                            <li>Primary data centers in the United States and European Union</li>
+                            <li>Regional backup facilities for disaster recovery</li>
+                            <li>Data residency options for enterprise customers</li>
+                            <li>Compliance with local data protection regulations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h2>9. Changes to This Privacy Policy</h2>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <p>We may update this Privacy Policy periodically to reflect changes in our practices, technology, or legal requirements.</p>
+
+                        <h3>Notification Process:</h3>
+                        <ul>
+                            <li>Material changes will be communicated via email and in-app notifications</li>
+                            <li>Minor updates will be posted on our website with updated dates</li>
+                            <li>Users will have 30 days to review changes before they take effect</li>
+                            <li>Continued use of services indicates acceptance of updated terms</li>
+                        </ul>
+
+                        <h3>Version Control:</h3>
+                        <ul>
+                            <li>All policy versions are archived and available upon request</li>
+                            <li>Clear change logs document what has been modified</li>
+                            <li>Previous versions remain accessible for reference</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2>Privacy Questions? We're Here to Help</h2>
+                <p>Our privacy team is dedicated to protecting your information and answering your questions.</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <h4>📧 Privacy Email</h4>
+                        <p>privacy@diagnox.com</p>
+                        <small>Response within 24 hours</small>
+                    </div>
+                    <div class="contact-method">
+                        <h4>📞 Privacy Hotline</h4>
+                        <p>+1 (555) PRIVACY</p>
+                        <small>Available 24/7</small>
+                    </div>
+                    <div class="contact-method">
+                        <h4>📮 Postal Address</h4>
+                        <p>DiagnoX Privacy Office<br>123 Innovation Drive<br>Tech City, TC 12345</p>
+                    </div>
+                    <div class="contact-method">
+                        <h4>🔒 Data Protection Officer</h4>
+                        <p>dpo@diagnox.com</p>
+                        <small>EU GDPR Representative</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@diagnox.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Innovation Drive<br>Tech City, TC 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p><a href="faq.html">FAQ & Help Center</a></p>
+                    <p><a href="setup.html">Device Setup Guide</a></p>
+                    <p><a href="tutorials.html">App Tutorials</a></p>
+                    <p><a href="warranty.html">Warranty Information</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <p><a href="about.html">About DiagnoX</a></p>
+                    <p><a href="studies.html">Clinical Studies</a></p>
+                    <p><a href="privacy.html">Privacy Policy</a></p>
+                    <p><a href="terms.html">Terms of Service</a></p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                © 2025 DiagnoX. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Section toggle functionality
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const section = this.parentElement;
+                const isExpanded = section.classList.contains('expanded');
+                
+                // Close all sections
+                document.querySelectorAll('.section').forEach(s => {
+                    s.classList.remove('expanded');
+                });
+                
+                // Open clicked section if it wasn't already open
+                if (!isExpanded) {
+                    section.classList.add('expanded');
+                }
+            });
+        });
+
+        // Quick navigation
+        document.querySelectorAll('.quick-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                
+                if (section) {
+                    // Close all sections first
+                    document.querySelectorAll('.section').forEach(s => {
+                        s.classList.remove('expanded');
+                    });
+                    
+                    // Open target section
+                    section.classList.add('expanded');
+                    
+                    // Scroll to section
+                    section.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Auto-expand first section on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section');
+            if (firstSection) {
+                firstSection.classList.add('expanded');
+            }
+        });
+    </script>
+</body>
+</html>
