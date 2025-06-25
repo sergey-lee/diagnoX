@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Tutorials - DiagnoX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d4aa;
+        }
+
+        .back-home {
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding-top: 120px;
+            padding-bottom: 4rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tutorial-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card.active {
+            border: 2px solid #00d4aa;
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: #00d4aa;
+            margin-bottom: 1rem;
+        }
+
+        .tutorials-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tutorial-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .tutorial-section.active {
+            display: block;
+        }
+
+        .tutorial-item {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .tutorial-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tutorial-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .tutorial-duration {
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .tutorial-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .tutorial-item.expanded .tutorial-content {
+            display: block;
+        }
+
+        .tutorial-content h4 {
+            color: #00d4aa;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .tutorial-steps {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tutorial-steps li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .tutorial-steps li:last-child {
+            border-bottom: none;
+        }
+
+        .tutorial-steps li::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            top: 0.8rem;
+            background: #00d4aa;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tutorial-steps {
+            counter-reset: step-counter;
+        }
+
+        .video-placeholder {
+            background: #e9ecef;
+            height: 200px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            color: #666;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            background: #dee2e6;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .screenshot-placeholder {
+            background: #f8f9fa;
+            height: 300px;
+            border-radius: 10px;
+            border: 2px dashed #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .tip-box {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tip-box strong {
+            color: #0c5460;
+        }
+
+        .quick-access {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .quick-access h3 {
+            color: #00d4aa;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-link {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .quick-link:hover {
+            background: #00d4aa;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00d4aa;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tutorial-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">DiagnoX</a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#app">App</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" class="back-home">← Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>App Tutorials</h1>
+                <p>Master your DiagnoX app with these comprehensive tutorials. Learn every feature to get the most out of your glucose monitoring experience.</p>
+            </div>
+
+            <div class="quick-access">
+                <h3>Quick Access</h3>
+                <div class="quick-links">
+                    <a href="#" class="quick-link" data-category="getting-started">Getting Started</a>
+                    <a href="#" class="quick-link" data-category="daily-use">Daily Use</a>
+                    <a href="#" class="quick-link" data-category="data-analysis">Data Analysis</a>
+                    <a href="#" class="quick-link" data-category="advanced">Advanced Features</a>
+                </div>
+            </div>
+
+            <div class="tutorial-categories">
+                <div class="category-card active" data-category="getting-started">
+                    <div class="category-icon">🚀</div>
+                    <h3>Getting Started</h3>
+                    <p>Learn the basics of using your DiagnoX app</p>
+                </div>
+                <div class="category-card" data-category="daily-use">
+                    <div class="category-icon">📅</div>
+                    <h3>Daily Use</h3>
+                    <p>Master your daily glucose monitoring routine</p>
+                </div>
+                <div class="category-card" data-category="data-analysis">
+                    <div class="category-icon">📊</div>
+                    <h3>Data Analysis</h3>
+                    <p>Understand your glucose trends and patterns</p>
+                </div>
+                <div class="category-card" data-category="advanced">
+                    <div class="category-icon">⚙️</div>
+                    <h3>Advanced Features</h3>
+                    <p>Explore powerful tools and customizations</p>
+                </div>
+            </div>
+
+            <div class="tutorials-container">
+                <!-- Getting Started Tutorials -->
+                <div class="tutorial-section active" id="getting-started">
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Setting Up Your Profile</div>
+                            <div class="tutorial-duration">5 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <div class="video-placeholder">
+                                📹 Click to Watch: Profile Setup Tutorial
+                            </div>
+                            <h4>What You'll Learn:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Creating your personal health profile</li>
+                                <li>Setting your target glucose ranges</li>
+                                <li>Configuring diabetes type and medications</li>
+                                <li>Setting up emergency contacts</li>
+                                <li>Personalizing app preferences</li>
+                            </ol>
+                            <div class="tip-box">
+                                <strong>Pro Tip:</strong> Complete your profile thoroughly for more accurate insights and personalized recommendations.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Navigating the Home Dashboard</div>
+                            <div class="tutorial-duration">3 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <div class="screenshot-grid">
+                                <div class="screenshot-placeholder">Home Screen<br>Overview</div>
+                                <div class="screenshot-placeholder">Quick Actions<br>Menu</div>
+                            </div>
+                            <h4>Dashboard Components:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Current glucose reading display</li>
+                                <li>Trend arrow and direction</li>
+                                <li>Time since last reading</li>
+                                <li>Quick action buttons</li>
+                                <li>Daily summary cards</li>
+                                <li>Notification center access</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Taking Your First Reading</div>
+                            <div class="tutorial-duration">4 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <div class="video-placeholder">
+                                📹 Click to Watch: First Reading Tutorial
+                            </div>
+                            <h4>Step-by-Step Process:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Ensure device is charged and paired</li>
+                                <li>Tap "Take Reading" on home screen</li>
+                                <li>Follow finger placement guidance</li>
+                                <li>Wait for measurement completion</li>
+                                <li>Review and save your reading</li>
+                                <li>Add context notes if needed</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Use Tutorials -->
+                <div class="tutorial-section" id="daily-use">
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Setting Up Smart Reminders</div>
+                            <div class="tutorial-duration">6 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h4>Types of Reminders:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Daily testing schedule reminders</li>
+                                <li>Pre-meal and post-meal alerts</li>
+                                <li>Medication timing notifications</li>
+                                <li>Exercise monitoring prompts</li>
+                                <li>Doctor appointment reminders</li>
+                            </ol>
+                            <div class="tip-box">
+                                <strong>Customization:</strong> Set different reminder tones and timing for different types of alerts to stay organized.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Logging Meals and Activities</div>
+                            <div class="tutorial-duration">8 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <div class="screenshot-grid">
+                                <div class="screenshot-placeholder">Food Logging<br>Interface</div>
+                                <div class="screenshot-placeholder">Activity<br>Tracker</div>
+                            </div>
+                            <h4>What to Log:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Meal times and carbohydrate content</li>
+                                <li>Exercise duration and intensity</li>
+                                <li>Medication administration</li>
+                                <li>Sleep patterns and quality</li>
+                                <li>Stress levels and mood</li>
+                                <li>Special events or circumstances</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Understanding Real-Time Alerts</div>
+                            <div class="tutorial-duration">5 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h4>Alert Types:</h4>
+                            <ol class="tutorial-steps">
+                                <li>High glucose level warnings</li>
+                                <li>Low glucose level alerts</li>
+                                <li>Rapid change notifications</li>
+                                <li>Trending pattern alerts</li>
+                                <li>Device connectivity issues</li>
+                                <li>Battery low warnings</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Analysis Tutorials -->
+                <div class="tutorial-section" id="data-analysis">
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Reading Your Glucose Trends</div>
+                            <div class="tutorial-duration">10 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <div class="video-placeholder">
+                                📹 Click to Watch: Trend Analysis Deep Dive
+                            </div>
+                            <h4>Understanding Charts:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Daily glucose curve interpretation</li>
+                                <li>Weekly pattern recognition</li>
+                                <li>Monthly trend analysis</li>
+                                <li>Comparing time periods</li>
+                                <li>Identifying peak and low periods</li>
+                                <li>Correlation with activities and meals</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Generating Health Reports</div>
+                            <div class="tutorial-duration">7 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h4>Report Types:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Daily summary reports</li>
+                                <li>Weekly progress reports</li>
+                                <li>Monthly comprehensive analysis</li>
+                                <li>Pre-appointment reports for doctors</li>
+                                <li>Customizable date range reports</li>
+                                <li>Exporting and sharing options</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Setting and Tracking Goals</div>
+                            <div class="tutorial-duration">6 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h4>Goal Categories:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Target glucose range goals</li>
+                                <li>Time-in-range objectives</li>
+                                <li>Testing frequency targets</li>
+                                <li>Exercise and lifestyle goals</li>
+                                <li>Weight management objectives</li>
+                                <li>Medication adherence tracking</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Features Tutorials -->
+                <div class="tutorial-section" id="advanced">
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Customizing Your Experience</div>
+                            <div class="tutorial-duration">8 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h4>Customization Options:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Personalizing dashboard layout</li>
+                                <li>Setting custom alert thresholds</li>
+                                <li>Configuring data export preferences</li>
+                                <li>Choosing measurement units</li>
+                                <li>Customizing chart colors and styles</li>
+                                <li>Setting privacy and sharing preferences</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Integration with Health Apps</div>
+                            <div class="tutorial-duration">5 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h4>Compatible Platforms:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Apple Health integration setup</li>
+                                <li>Google Fit synchronization</li>
+                                <li>Fitness tracker data import</li>
+                                <li>Third-party diabetes app connections</li>
+                                <li>Electronic health record sharing</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-header">
+                            <div class="tutorial-title">Troubleshooting Common Issues</div>
+                            <div class="tutorial-duration">12 min</div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h4>Common Problems & Solutions:</h4>
+                            <ol class="tutorial-steps">
+                                <li>Device connectivity troubleshooting</li>
+                                <li>Syncing issues resolution</li>
+                                <li>App performance optimization</li>
+                                <li>Reading accuracy concerns</li>
+                                <li>Battery and charging problems</li>
+                                <li>Data backup and recovery</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@diagnox.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Innovation Drive<br>Tech City, TC 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p><a href="faq.html">FAQ & Help Center</a></p>
+                    <p><a href="setup.html">Device Setup Guide</a></p>
+                    <p><a href="tutorials.html">App Tutorials</a></p>
+                    <p><a href="warranty.html">Warranty Information</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <p><a href="about.html">About DiagnoX</a></p>
+                    <p><a href="studies.html">Clinical Studies</a></p>
+                    <p><a href="privacy.html">Privacy Policy</a></p>
+                    <p><a href="terms.html">Terms of Service</a></p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                © 2025 DiagnoX. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Category switching functionality
+        document.querySelectorAll('.category-card, .quick-link').forEach(card => {
+            card.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active category card
+                document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+                document.querySelector(`.category-card[data-category="${category}"]`).classList.add('active');
+                
+                // Show corresponding tutorial section
+                document.querySelectorAll('.tutorial-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(category).classList.add('active');
+            });
+        });
+
+        // Tutorial item expansion
+        document.querySelectorAll('.tutorial-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const tutorialItem = this.parentElement;
+                tutorialItem.classList.toggle('expanded');
+            });
+        });
+
+        // Video placeholder clicks
+        document.querySelectorAll('.video-placeholder').forEach(placeholder => {
+            placeholder.addEventListener('click', function() {
+                alert('Video tutorial would play here. In production, this would launch the video player.');
+            });
+        });
+    </script>
+</body>
+</html>

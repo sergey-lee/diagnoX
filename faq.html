@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ & Help Center - DiagnoX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d4aa;
+        }
+
+        .back-home {
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding-top: 120px;
+            padding-bottom: 4rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .faq-search {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #00d4aa;
+        }
+
+        .faq-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: #00d4aa;
+            margin-bottom: 1rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-section {
+            margin-bottom: 3rem;
+        }
+
+        .faq-section h2 {
+            color: #333;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #00d4aa;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #00d4aa;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '−';
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 300px;
+        }
+
+        .contact-support {
+            background: linear-gradient(135deg, #00d4aa, #00b894);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .contact-support h2 {
+            margin-bottom: 1rem;
+        }
+
+        .support-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .support-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .support-btn:hover {
+            background: white;
+            color: #00d4aa;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00d4aa;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .support-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">DiagnoX</a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#app">App</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" class="back-home">← Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>FAQ & Help Center</h1>
+                <p>Find answers to common questions about DiagnoX glucose monitoring device and get the help you need.</p>
+            </div>
+
+            <div class="faq-search">
+                <input type="text" class="search-input" placeholder="Search for answers..." id="searchInput">
+            </div>
+
+            <div class="faq-categories">
+                <div class="category-card">
+                    <div class="category-icon">🔧</div>
+                    <h3>Device Setup</h3>
+                    <p>Getting started with your DiagnoX device</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📱</div>
+                    <h3>App Support</h3>
+                    <p>Mobile app installation and usage</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🔋</div>
+                    <h3>Technical Issues</h3>
+                    <p>Troubleshooting and maintenance</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📊</div>
+                    <h3>Data & Readings</h3>
+                    <p>Understanding your glucose data</p>
+                </div>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-section">
+                    <h2>Getting Started</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">How do I set up my DiagnoX device for the first time?</div>
+                        <div class="faq-answer">Setting up your DiagnoX device is simple. First, charge the device using the included wireless charger for at least 2 hours. Download the DiagnoX app from the App Store or Google Play. Open the app and follow the guided setup process to pair your device via Bluetooth. The app will walk you through calibration and initial configuration.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">What's included in the DiagnoX Complete Kit?</div>
+                        <div class="faq-answer">Your Complete Kit includes: DiagnoX monitoring device, wireless charging station, USB-C cable, quick start guide, warranty card, and access to the premium mobile app for one year. All items come in a premium carrying case.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Do I need a prescription to use DiagnoX?</div>
+                        <div class="faq-answer">DiagnoX is designed as a wellness device for personal glucose monitoring. While no prescription is required for purchase, we recommend consulting with your healthcare provider before making any changes to your diabetes management routine.</div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h2>Device Usage</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">How accurate is DiagnoX compared to traditional glucose meters?</div>
+                        <div class="faq-answer">DiagnoX achieves 98.5% clinical accuracy, meeting and exceeding FDA standards for glucose monitoring devices. Our technology has been validated in multiple clinical trials with over 10,000 participants. Results are typically within ±15% or ±15 mg/dL of laboratory reference values.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How often should I take readings with DiagnoX?</div>
+                        <div class="faq-answer">DiagnoX is designed for flexible monitoring. You can take readings as often as needed without pain or cost per test. Many users check 4-6 times daily, including before meals and at bedtime. The device can take unlimited readings throughout the day.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Can I use DiagnoX on different parts of my body?</div>
+                        <div class="faq-answer">DiagnoX is optimized for finger measurements for the most accurate readings. The device should be placed on the fingertip for best results. Do not use on other body parts as this may affect accuracy.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">What factors can affect reading accuracy?</div>
+                        <div class="faq-answer">Ensure your finger is clean and dry before measurement. Avoid taking readings immediately after washing hands, applying lotion, or if your hands are very cold. Nail polish or artificial nails may interfere with readings. The device works best at room temperature.</div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h2>Technical Support</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">Why won't my device connect to the app?</div>
+                        <div class="faq-answer">Ensure Bluetooth is enabled on your phone and the device is charged. Try restarting both the app and your phone. If issues persist, reset the device by holding the power button for 10 seconds, then try pairing again. Make sure you're within 10 feet of the device.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How long does the battery last?</div>
+                        <div class="faq-answer">DiagnoX provides up to 12 hours of active monitoring on a single charge. With typical use (4-6 readings per day), the battery can last 3-5 days. The device automatically enters sleep mode when not in use to conserve battery.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How do I clean my DiagnoX device?</div>
+                        <div class="faq-answer">Wipe the device with a soft, slightly damp cloth. Do not submerge in water or use harsh chemicals. The sensor area can be cleaned with a dry cotton swab. Avoid getting moisture in the charging port.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">What should I do if my device stops working?</div>
+                        <div class="faq-answer">First, ensure the device is charged. Try restarting by holding the power button for 10 seconds. Check for app updates. If problems persist, contact our support team at support@diagnox.com or use the in-app help feature. Your device is covered by a 2-year warranty.</div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h2>Data & Privacy</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">How is my glucose data stored and protected?</div>
+                        <div class="faq-answer">All data is encrypted and stored securely in HIPAA-compliant cloud servers. You own your data and can export or delete it at any time. We never share personal health information with third parties without your explicit consent.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Can I share my data with my doctor?</div>
+                        <div class="faq-answer">Yes! The DiagnoX app generates comprehensive PDF reports that you can easily email to your healthcare provider. Reports include glucose trends, patterns, and statistics over any time period you choose.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">What happens if I lose my phone?</div>
+                        <div class="faq-answer">Your data is safely backed up to the cloud. Simply download the app on a new device and log in with your account credentials to restore all your historical data and settings.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-support">
+                <h2>Still Need Help?</h2>
+                <p>Our support team is here to help you get the most out of your DiagnoX device.</p>
+                <div class="support-buttons">
+                    <a href="mailto:support@diagnox.com" class="support-btn">Email Support</a>
+                    <a href="tel:+15551234567" class="support-btn">Call Us</a>
+                    <a href="#" class="support-btn">Live Chat</a>
+                </div>
+                <p style="margin-top: 1rem; opacity: 0.8;">Average response time: 2 hours</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@diagnox.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Innovation Drive<br>Tech City, TC 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p><a href="faq.html">FAQ & Help Center</a></p>
+                    <p><a href="setup.html">Device Setup Guide</a></p>
+                    <p><a href="tutorials.html">App Tutorials</a></p>
+                    <p><a href="warranty.html">Warranty Information</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <p><a href="about.html">About DiagnoX</a></p>
+                    <p><a href="studies.html">Clinical Studies</a></p>
+                    <p><a href="privacy.html">Privacy Policy</a></p>
+                    <p><a href="terms.html">Terms of Service</a></p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                © 2025 DiagnoX. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = searchTerm === '' ? 'block' : 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

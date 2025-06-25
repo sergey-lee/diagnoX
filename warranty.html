@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warranty Information - DiagnoX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d4aa;
+        }
+
+        .back-home {
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding-top: 120px;
+            padding-bottom: 4rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .warranty-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .overview-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .overview-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .overview-card h3 {
+            color: #00d4aa;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .overview-card .highlight {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00d4aa;
+        }
+
+        .warranty-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .warranty-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .warranty-table th,
+        .warranty-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .warranty-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #00d4aa;
+        }
+
+        .warranty-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .coverage-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .coverage-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .coverage-list li:last-child {
+            border-bottom: none;
+        }
+
+        .coverage-list li.covered::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .coverage-list li.not-covered::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .warning-box strong {
+            color: #856404;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-box strong {
+            color: #0c5460;
+        }
+
+        .registration-form {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00d4aa;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-warranty {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .contact-warranty h2 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-method {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .contact-method h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00d4aa;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .warranty-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">DiagnoX</a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#app">App</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" class="back-home">← Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Warranty Information</h1>
+                <p>Your DiagnoX device is protected by our comprehensive warranty program. Learn about coverage, registration, and how to make claims.</p>
+            </div>
+
+            <div class="warranty-overview">
+                <div class="overview-card">
+                    <div class="overview-icon">🛡️</div>
+                    <h3>Warranty Period</h3>
+                    <div class="highlight">2 Years</div>
+                    <p>Full coverage from purchase date</p>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon">🌍</div>
+                    <h3>Global Coverage</h3>
+                    <div class="highlight">Worldwide</div>
+                    <p>Valid in all countries</p>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon">⚡</div>
+                    <h3>Response Time</h3>
+                    <div class="highlight">24 Hours</div>
+                    <p>Initial response guarantee</p>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon">🔄</div>
+                    <h3>Replacement</h3>
+                    <div class="highlight">Express</div>
+                    <p>Fast replacement service</p>
+                </div>
+            </div>
+
+            <div class="warranty-content">
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Warranty Coverage Details</h2>
+                        <p>Comprehensive protection for your DiagnoX device</p>
+                    </div>
+                    <div class="section-content">
+                        <h3>What's Covered:</h3>
+                        <ul class="coverage-list">
+                            <li class="covered">Manufacturing defects in materials and workmanship</li>
+                            <li class="covered">Device hardware malfunctions</li>
+                            <li class="covered">Optical sensor failures</li>
+                            <li class="covered">Battery performance issues (below 80% capacity)</li>
+                            <li class="covered">Charging port defects</li>
+                            <li class="covered">Software bugs and compatibility issues</li>
+                            <li class="covered">Wireless connectivity problems</li>
+                            <li class="covered">Display malfunctions</li>
+                        </ul>
+
+                        <h3 style="margin-top: 2rem;">What's NOT Covered:</h3>
+                        <ul class="coverage-list">
+                            <li class="not-covered">Physical damage from drops, impacts, or accidents</li>
+                            <li class="not-covered">Water damage or liquid exposure</li>
+                            <li class="not-covered">Damage from unauthorized repairs or modifications</li>
+                            <li class="not-covered">Normal wear and tear (scratches, scuffs)</li>
+                            <li class="not-covered">Damage from misuse or abuse</li>
+                            <li class="not-covered">Lost or stolen devices</li>
+                            <li class="not-covered">Consumable items (charging cables after 6 months)</li>
+                            <li class="not-covered">Damage from extreme temperatures or environments</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <strong>Extended Warranty:</strong> Additional warranty coverage and accidental damage protection plans are available for purchase within 30 days of your original purchase.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Warranty Registration</h2>
+                        <p>Register your device to activate warranty coverage</p>
+                    </div>
+                    <div class="section-content">
+                        <div class="warning-box">
+                            <strong>Important:</strong> You must register your device within 30 days of purchase to activate warranty coverage. Registration is free and takes less than 5 minutes.
+                        </div>
+
+                        <div class="registration-form">
+                            <h3>Register Your DiagnoX Device</h3>
+                            <form id="warrantyForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name *</label>
+                                        <input type="text" id="firstName" name="firstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name *</label>
+                                        <input type="text" id="lastName" name="lastName" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="serialNumber">Device Serial Number *</label>
+                                        <input type="text" id="serialNumber" name="serialNumber" placeholder="Found on device back" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="purchaseDate">Purchase Date *</label>
+                                        <input type="date" id="purchaseDate" name="purchaseDate" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="retailer">Where Purchased *</label>
+                                        <select id="retailer" name="retailer" required>
+                                            <option value="">Select retailer...</option>
+                                            <option value="diagnox-official">DiagnoX Official Store</option>
+                                            <option value="amazon">Amazon</option>
+                                            <option value="best-buy">Best Buy</option>
+                                            <option value="target">Target</option>
+                                            <option value="pharmacy">Local Pharmacy</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="orderNumber">Order/Receipt Number</label>
+                                        <input type="text" id="orderNumber" name="orderNumber">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="submit-btn">Register Device</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h2>Making a Warranty Claim</h2>
+                        <p>Simple process to get your device repaired or replaced</p>
+                    </div>
+                    <div class="section-content">
+                        <h3>Claim Process:</h3>
+                        <table class="warranty-table">
+                            <thead>
+                                <tr>
+                                    <th>Step</th>
+                                    <th>Action</th>
+                                    <th>Timeline</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Contact</strong></td>
+                                    <td>Reach out via phone, email, or online form</td>
+                                    <td>Immediate</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Diagnosis</strong></td>
+                                    <td>Our team will troubleshoot the issue with you</td>
+                                    <td>Within 24 hours</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Approval</strong></td>
+                                    <td>Warranty claim approved and RMA number issued</td>
+                                    <td>1-2 business days</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Shipping</strong></td>
+                                    <td>We send prepaid shipping label</td>
+                                    <td>Same day as approval</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Repair/Replace</strong></td>
+                                    <td>Device repaired or replaced at our facility</td>
+                                    <td>3-5 business days</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Return</strong></td>
+                                    <td>Repaired/replacement device shipped back</td>
+                                    <td>1-2 business days</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="info-box">
+                            <strong>Express Replacement:</strong> For critical issues, we offer express replacement where we ship a new device immediately and you return the defective one afterward.
+                        </div>
+
+                        <h3>Required Information for Claims:</h3>
+                        <ul class="coverage-list">
+                            <li class="covered">Device serial number</li>
+                            <li class="covered">Proof of purchase (receipt or order confirmation)</li>
+                            <li class="covered">Detailed description of the problem</li>
+                            <li class="covered">Steps you've already tried to resolve the issue</li>
+                            <li class="covered">Your contact information and shipping address</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h2>International Warranty</h2>
+                        <p>Global coverage and regional support</p>
+                    </div>
+                    <div class="section-content">
+                        <p>Your DiagnoX warranty is valid worldwide. However, repair and replacement procedures may vary by region:</p>
+
+                        <table class="warranty-table">
+                            <thead>
+                                <tr>
+                                    <th>Region</th>
+                                    <th>Service Center</th>
+                                    <th>Response Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>North America</td>
+                                    <td>United States (Primary)</td>
+                                    <td>1-2 days</td>
+                                </tr>
+                                <tr>
+                                    <td>Europe</td>
+                                    <td>Germany, United Kingdom</td>
+                                    <td>2-3 days</td>
+                                </tr>
+                                <tr>
+                                    <td>Asia Pacific</td>
+                                    <td>Japan, Singapore</td>
+                                    <td>3-5 days</td>
+                                </tr>
+                                <tr>
+                                    <td>Other Regions</td>
+                                    <td>Centralized (USA)</td>
+                                    <td>5-7 days</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="warning-box">
+                            <strong>Note:</strong> Customs and import duties may apply for international warranty services. DiagnoX covers shipping costs but not customs fees.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-warranty">
+                <h2>Need Warranty Support?</h2>
+                <p>Our dedicated warranty team is ready to help you with any issues or questions.</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <h4>📞 Phone Support</h4>
+                        <p>+1 (555) WARRANTY<br>(+1-555-927-7268)</p>
+                        <small>Mon-Fri: 8AM-8PM EST<br>Sat-Sun: 9AM-5PM EST</small>
+                    </div>
+                    <div class="contact-method">
+                        <h4>📧 Email Support</h4>
+                        <p>warranty@diagnox.com</p>
+                        <small>24-hour response guarantee</small>
+                    </div>
+                    <div class="contact-method">
+                        <h4>💬 Live Chat</h4>
+                        <p>Available on our website</p>
+                        <small>Real-time assistance<br>Mon-Fri: 9AM-6PM EST</small>
+                    </div>
+                    <div class="contact-method">
+                        <h4>📋 Online Form</h4>
+                        <p>Submit warranty claim online</p>
+                        <small>Fastest processing<br>24/7 availability</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@diagnox.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Innovation Drive<br>Tech City, TC 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p><a href="faq.html">FAQ & Help Center</a></p>
+                    <p><a href="setup.html">Device Setup Guide</a></p>
+                    <p><a href="tutorials.html">App Tutorials</a></p>
+                    <p><a href="warranty.html">Warranty Information</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <p><a href="about.html">About DiagnoX</a></p>
+                    <p><a href="studies.html">Clinical Studies</a></p>
+                    <p><a href="privacy.html">Privacy Policy</a></p>
+                    <p><a href="terms.html">Terms of Service</a></p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                © 2025 DiagnoX. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handler
+        document.getElementById('warrantyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            alert('Registration submitted successfully! You will receive a confirmation email within 24 hours. Your warranty is now active.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add form validation
+        document.querySelectorAll('input[required], select[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.style.borderColor = '#dc3545';
+                } else {
+                    this.style.borderColor = '#28a745';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

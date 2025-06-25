@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Setup Guide - DiagnoX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d4aa;
+        }
+
+        .back-home {
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home:hover {
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding-top: 120px;
+            padding-bottom: 4rem;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .setup-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-header {
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .step-content {
+            padding: 2rem;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .step-details {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .step-details h4 {
+            color: #00d4aa;
+            margin-bottom: 1rem;
+        }
+
+        .step-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-details li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .step-details li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00d4aa;
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .warning-box strong {
+            color: #856404;
+        }
+
+        .tip-box {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tip-box strong {
+            color: #0c5460;
+        }
+
+        .video-placeholder {
+            background: #e9ecef;
+            height: 200px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .completion-banner {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .completion-banner h2 {
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .next-step-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .next-step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .next-step-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .next-step-card h3 {
+            color: #00d4aa;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00d4aa;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">DiagnoX</a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#app">App</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" class="back-home">← Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Device Setup Guide</h1>
+                <p>Follow this step-by-step guide to set up your DiagnoX glucose monitoring device and start your journey to pain-free monitoring.</p>
+            </div>
+
+            <div class="setup-steps">
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Unbox Your DiagnoX Kit</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-description">
+                            Welcome to DiagnoX! Let's start by checking that you have everything included in your Complete Kit.
+                        </div>
+                        <div class="step-details">
+                            <h4>What's in the Box:</h4>
+                            <ul>
+                                <li>DiagnoX monitoring device</li>
+                                <li>Wireless charging station</li>
+                                <li>USB-C charging cable</li>
+                                <li>Quick start guide</li>
+                                <li>Warranty registration card</li>
+                                <li>Premium carrying case</li>
+                            </ul>
+                        </div>
+                        <div class="tip-box">
+                            <strong>Tip:</strong> Keep all packaging materials until you've confirmed everything works properly, in case you need to return or exchange anything.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Charge Your Device</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-description">
+                            Before first use, charge your DiagnoX device for at least 2 hours to ensure optimal performance.
+                        </div>
+                        <div class="step-details">
+                            <h4>Charging Instructions:</h4>
+                            <ul>
+                                <li>Connect the charging station to power using the USB-C cable</li>
+                                <li>Place the DiagnoX device on the charging station</li>
+                                <li>The LED indicator will show red while charging</li>
+                                <li>LED turns green when fully charged</li>
+                                <li>Initial charge takes 2-3 hours</li>
+                            </ul>
+                        </div>
+                        <div class="video-placeholder">
+                            📹 Video: How to Charge Your DiagnoX Device
+                        </div>
+                        <div class="warning-box">
+                            <strong>Important:</strong> Only use the provided charging station and cable. Third-party chargers may damage your device and void the warranty.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Download the DiagnoX App</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-description">
+                            The DiagnoX mobile app is your gateway to comprehensive glucose monitoring and health insights.
+                        </div>
+                        <div class="step-details">
+                            <h4>Download Steps:</h4>
+                            <ul>
+                                <li>Open App Store (iOS) or Google Play Store (Android)</li>
+                                <li>Search for "DiagnoX Glucose Monitor"</li>
+                                <li>Download and install the official DiagnoX app</li>
+                                <li>Look for the blue DiagnoX logo to ensure authenticity</li>
+                            </ul>
+                        </div>
+                        <div class="step-details">
+                            <h4>System Requirements:</h4>
+                            <ul>
+                                <li>iOS 12.0 or later / Android 8.0 or later</li>
+                                <li>Bluetooth 5.0 enabled</li>
+                                <li>Internet connection for initial setup</li>
+                                <li>At least 100MB of free storage space</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Create Your Account</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-description">
+                            Set up your personal DiagnoX account to securely store your glucose data and track your health trends.
+                        </div>
+                        <div class="step-details">
+                            <h4>Account Setup:</h4>
+                            <ul>
+                                <li>Open the DiagnoX app</li>
+                                <li>Tap "Create Account" or "Sign Up"</li>
+                                <li>Enter your email address and create a secure password</li>
+                                <li>Verify your email address</li>
+                                <li>Complete your health profile (age, diabetes type, target ranges)</li>
+                            </ul>
+                        </div>
+                        <div class="tip-box">
+                            <strong>Privacy Note:</strong> Your health data is encrypted and stored securely. DiagnoX never shares your personal information without your explicit consent.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Pair Your Device</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-description">
+                            Connect your DiagnoX device to your smartphone via Bluetooth for seamless data synchronization.
+                        </div>
+                        <div class="step-details">
+                            <h4>Pairing Process:</h4>
+                            <ul>
+                                <li>Ensure your device is charged and nearby (within 10 feet)</li>
+                                <li>Enable Bluetooth on your smartphone</li>
+                                <li>In the app, tap "Add Device" or "Pair Device"</li>
+                                <li>Press and hold the power button on your DiagnoX device for 3 seconds</li>
+                                <li>Select your device from the list when it appears</li>
+                                <li>Follow the on-screen prompts to complete pairing</li>
+                            </ul>
+                        </div>
+                        <div class="video-placeholder">
+                            📹 Video: Device Pairing Walkthrough
+                        </div>
+                        <div class="warning-box">
+                            <strong>Troubleshooting:</strong> If pairing fails, restart both the app and your phone, then try again. Make sure no other devices are trying to connect simultaneously.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Initial Calibration</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-description">
+                            DiagnoX comes pre-calibrated, but we'll verify accuracy with your first few readings.
+                        </div>
+                        <div class="step-details">
+                            <h4>Calibration Steps:</h4>
+                            <ul>
+                                <li>Wash and dry your hands thoroughly</li>
+                                <li>Remove any nail polish from your index finger</li>
+                                <li>Place your finger on the sensor as shown in the app</li>
+                                <li>Take 3 readings, 5 minutes apart</li>
+                                <li>The app will confirm calibration is complete</li>
+                            </ul>
+                        </div>
+                        <div class="tip-box">
+                            <strong>Best Practice:</strong> For most accurate readings, use the same finger (index finger recommended) and ensure it's clean and dry each time.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Take Your First Reading</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-description">
+                            Congratulations! You're ready to take your first pain-free glucose reading.
+                        </div>
+                        <div class="step-details">
+                            <h4>How to Take a Reading:</h4>
+                            <ul>
+                                <li>Press the power button to wake up your device</li>
+                                <li>Place your index finger gently on the sensor</li>
+                                <li>Hold steady for 3 seconds until you hear a beep</li>
+                                <li>Your reading will appear on the device and sync to the app</li>
+                                <li>The app will provide context and recommendations</li>
+                            </ul>
+                        </div>
+                        <div class="video-placeholder">
+                            📹 Video: Taking Your First Reading
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="completion-banner">
+                <h2>🎉 Setup Complete!</h2>
+                <p>Your DiagnoX device is now ready to help you monitor your glucose levels with precision and comfort. Welcome to the future of diabetes management!</p>
+            </div>
+
+            <div class="next-steps">
+                <div class="next-step-card">
+                    <div class="next-step-icon">📱</div>
+                    <h3>Explore the App</h3>
+                    <p>Learn about all the features and insights available in your DiagnoX mobile app.</p>
+                    <a href="tutorials.html" class="cta-button">App Tutorials</a>
+                </div>
+                <div class="next-step-card">
+                    <div class="next-step-icon">❓</div>
+                    <h3>Get Help</h3>
+                    <p>Find answers to common questions and troubleshooting tips.</p>
+                    <a href="faq.html" class="cta-button">FAQ & Support</a>
+                </div>
+                <div class="next-step-card">
+                    <div class="next-step-icon">🛡️</div>
+                    <h3>Register Warranty</h3>
+                    <p>Protect your investment with our comprehensive 2-year warranty coverage.</p>
+                    <a href="warranty.html" class="cta-button">Warranty Info</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@diagnox.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Innovation Drive<br>Tech City, TC 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p><a href="faq.html">FAQ & Help Center</a></p>
+                    <p><a href="setup.html">Device Setup Guide</a></p>
+                    <p><a href="tutorials.html">App Tutorials</a></p>
+                    <p><a href="warranty.html">Warranty Information</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <p><a href="about.html">About DiagnoX</a></p>
+                    <p><a href="studies.html">Clinical Studies</a></p>
+                    <p><a href="privacy.html">Privacy Policy</a></p>
+                    <p><a href="terms.html">Terms of Service</a></p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                © 2025 DiagnoX. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Add any interactive functionality here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
