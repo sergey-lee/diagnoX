@@ -112,22 +112,6 @@
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
         }
 
-.submit-btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-        }
-
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
@@ -906,22 +890,32 @@
         </div>
     </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="newsletter-signup">
-                <h2>Stay Updated</h2>
-                <p>Get the latest news about DiagnoX development, early access opportunities, and diabetes management tips.</p>
-                <div class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address" class="email-input">
-                    <!-- <button class="cta-button">Subscribe</button> -->
-                         <button type="submit" class="submit-btn" id="submitBtn">Subscribe</button>
-                </div>
-                <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
-                    Join 25,000+ people who are already following our journey. No spam, unsubscribe anytime.
-                </p>
-            </div>
+    
+<section class="section">
+    <div class="container">
+        <div class="newsletter-signup">
+            <h2>Stay Updated</h2>
+            <p>Get the latest news about DiagnoX development, early access opportunities, and diabetes management tips.</p>
+            <form id="newsletterForm" class="newsletter-form">
+                <input 
+                    type="email" 
+                    id="emailInput"
+                    placeholder="Enter your email address" 
+                    class="email-input"
+                    required
+                >
+                <button type="submit" id="subscribeBtn" class="cta-button">Subscribe</button>
+            </form>
+            
+            <!-- Сообщения об успехе/ошибке -->
+            <div id="statusMessage" style="display: none; margin-top: 1rem; padding: 0.75rem; border-radius: 4px; text-align: center;"></div>
+            
+            <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
+                Join 25,000+ people who are already following our journey. No spam, unsubscribe anytime.
+            </p>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="pricing" class="section">
         <div class="container">
@@ -1087,13 +1081,13 @@
     </script>
 
      <!-- Firebase SDK -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+   <!-- Firebase SDK и функциональность -->
+<script type="module">
+    // Import Firebase functions
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getFirestore, collection, addDoc, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-        // ЗАМЕНИТЕ НА ВАШИ ДАННЫЕ ИЗ FIREBASE CONSOLE
-     const firebaseConfig = {
+        const firebaseConfig = {
   apiKey: "AIzaSyATnF_m9h3VWabnfEqu2KY5g8lszBqcogo",
   authDomain: "diagnox-web.firebaseapp.com",
   projectId: "diagnox-web",
@@ -1103,84 +1097,121 @@
   measurementId: "G-F42KFG9JG6"
 };
 
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Функция для проверки уникальности email
-        async function isEmailUnique(email) {
-            const q = query(collection(db, "emails"), where("email", "==", email));
+    // Функция для проверки уникальности email
+    async function isEmailUnique(email) {
+        try {
+            const q = query(collection(db, "newsletter_emails"), where("email", "==", email));
             const querySnapshot = await getDocs(q);
             return querySnapshot.empty;
+        } catch (error) {
+            console.error("Error checking email uniqueness:", error);
+            throw error;
+        }
+    }
+
+    // Функция для сохранения email
+    async function saveEmail(email) {
+        try {
+            const docRef = await addDoc(collection(db, "newsletter_emails"), {
+                email: email,
+                timestamp: new Date(),
+                source: "DiagnoX Newsletter",
+                status: "subscribed"
+            });
+            return { success: true, id: docRef.id };
+        } catch (error) {
+            console.error("Error saving email:", error);
+            return { success: false, error: error.message };
+        }
+    }
+
+    // Функция для показа статусных сообщений
+    function showStatusMessage(message, type) {
+        const statusDiv = document.getElementById('statusMessage');
+        statusDiv.textContent = message;
+        statusDiv.style.display = 'block';
+        
+        // Стили для разных типов сообщений
+        if (type === 'success') {
+            statusDiv.style.backgroundColor = '#d4edda';
+            statusDiv.style.color = '#155724';
+            statusDiv.style.border = '1px solid #c3e6cb';
+        } else if (type === 'error') {
+            statusDiv.style.backgroundColor = '#f8d7da';
+            statusDiv.style.color = '#721c24';
+            statusDiv.style.border = '1px solid #f5c6cb';
+        } else if (type === 'info') {
+            statusDiv.style.backgroundColor = '#d1ecf1';
+            statusDiv.style.color = '#0c5460';
+            statusDiv.style.border = '1px solid #bee5eb';
         }
 
-        // Функция для сохранения email
-        async function saveEmail(email) {
-            try {
-                const docRef = await addDoc(collection(db, "emails"), {
-                    email: email,
-                    timestamp: new Date(),
-                    ip: null // можно добавить IP если нужно
-                });
-                return { success: true, id: docRef.id };
-            } catch (error) {
-                return { success: false, error: error.message };
-            }
+        // Автоматически скрыть сообщение через 5 секунд
+        setTimeout(() => {
+            statusDiv.style.display = 'none';
+        }, 5000);
+    }
+
+    // Обработчик отправки формы
+    document.getElementById('newsletterForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById('emailInput');
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        const email = emailInput.value.trim();
+
+        if (!email) {
+            showStatusMessage('Please enter a valid email address', 'error');
+            return;
         }
 
-        // Функция для показа сообщений
-        function showMessage(text, type) {
-            const messageDiv = document.getElementById('message');
-            messageDiv.textContent = text;
-            messageDiv.className = `message ${type}`;
-            messageDiv.style.display = 'block';
-        }
-
-        // Обработчик формы
-        document.getElementById('emailForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // Отключаем кнопку и меняем текст во время обработки
+        subscribeBtn.disabled = true;
+        const originalText = subscribeBtn.textContent;
+        subscribeBtn.textContent = 'Subscribing...';
+        
+        try {
+            // Проверяем уникальность email
+            const isUnique = await isEmailUnique(email);
             
-            const emailInput = document.getElementById('email');
-            const submitBtn = document.getElementById('submitBtn');
-            const email = emailInput.value.trim();
-
-            if (!email) {
-                showMessage('Пожалуйста, введите email', 'error');
+            if (!isUnique) {
+                showStatusMessage('This email is already subscribed to our newsletter!', 'info');
                 return;
             }
 
-            // Отключаем кнопку во время обработки
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Отправка...';
+            // Сохраняем email в Firebase
+            const result = await saveEmail(email);
             
-            try {
-                // Проверяем уникальность email
-                const isUnique = await isEmailUnique(email);
-                
-                if (!isUnique) {
-                    showMessage('Этот email уже зарегистрирован!', 'info');
-                    return;
-                }
-
-                // Сохраняем email
-                const result = await saveEmail(email);
-                
-                if (result.success) {
-                    showMessage('Email успешно сохранен! Спасибо за подписку.', 'success');
-                    emailInput.value = ''; // Очищаем поле
-                } else {
-                    showMessage('Ошибка при сохранении: ' + result.error, 'error');
-                }
-                
-            } catch (error) {
-                showMessage('Произошла ошибка: ' + error.message, 'error');
-            } finally {
-                // Включаем кнопку обратно
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Отправить';
+            if (result.success) {
+                showStatusMessage('Thank you for subscribing! You\'ll receive updates about DiagnoX development.', 'success');
+                emailInput.value = ''; // Очищаем поле ввода
+            } else {
+                showStatusMessage('Something went wrong. Please try again later.', 'error');
             }
-        });
-    </script>
+            
+        } catch (error) {
+            console.error('Subscription error:', error);
+            showStatusMessage('Connection error. Please check your internet connection and try again.', 'error');
+        } finally {
+            // Возвращаем кнопку в исходное состояние
+            subscribeBtn.disabled = false;
+            subscribeBtn.textContent = originalText;
+        }
+    });
+
+    // Дополнительная валидация email в реальном времени
+    document.getElementById('emailInput').addEventListener('input', function() {
+        const statusDiv = document.getElementById('statusMessage');
+        if (statusDiv.style.display !== 'none') {
+            statusDiv.style.display = 'none';
+        }
+    });
+</script>
+ 
+
 </body>
 </html>
